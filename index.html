@@ -93,43 +93,59 @@
         }
         .hover-glow { transition: all 0.3s ease; cursor: pointer; }
         .hover-glow:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2); border-color: #3b82f6; }
-                                               @media (max-width: 768px) {
-                  /* 1. ปรับกล่องเมนูให้ดูทันสมัย มีระยะห่าง และมีเงาบอกใบ้ว่ามีเมนูต่อ */
+                @media (max-width: 768px) {
+                  /* 1. แถบเมนูติดหนึบอยู่ขอบบนเสมอ (Sticky) + กระจกเบลอทะลุเนื้อหา */
                   .glass-card.sticky {
+                    position: sticky !important;
+                    top: 0 !important;
+                    z-index: 9999 !important; /* สั่งให้อยู่ชั้นบนสุด เนื้อหาจะได้ไม่ทับเมนู */
                     display: flex !important;
                     flex-wrap: nowrap !important;
                     overflow-x: auto !important;
-                    justify-content: flex-start !important;
-                    gap: 12px; /* เพิ่มช่องว่างระหว่างปุ่มให้ดูพรีเมียม */
-                    padding: 10px 15px !important;
-                    scroll-snap-type: x mandatory; /* ระบบแม่เหล็กเวลาปัดนิ้ว */
-                    -webkit-overflow-scrolling: touch; /* เลื่อนสมูทบนไอโฟน */
-                    position: relative;
-                    /* ใส่เงาด้านขวาบางๆ ให้รู้ว่ามีของซ่อนอยู่ */
-                    box-shadow: inset -20px 0 20px -20px rgba(0,0,0,0.3) !important; 
+                    gap: 8px !important; /* ลดช่องว่างให้ปุ่มชิดกันขึ้น จะได้เห็นหลายเมนู */
+                    padding: 12px 10px !important;
+                    background: rgba(255, 255, 255, 0.4) !important; /* กระจกทึบขึ้นนิดนึงให้อ่านง่าย */
+                    backdrop-filter: blur(25px) saturate(200%) !important; 
+                    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
                   }
                   
-                  /* ซ่อนแถบ Scrollbar แต่ยังเลื่อนได้ */
-                  .glass-card.sticky::-webkit-scrollbar {
-                    display: none; 
-                  }
+                  .glass-card.sticky::-webkit-scrollbar { display: none; }
                 
-                  /* 2. ปรับปุ่มให้เป็นทรงแคปซูล ดูนุ่มนวลน่ากด */
+                  /* 2. ย่อขนาดปุ่มลง เพื่อให้เห็นโผล่มา 3-4 อัน กรรมการจะได้รู้ว่าปัดได้ */
                   .nav-btn {
                     width: auto !important;
                     white-space: nowrap !important;
                     flex-shrink: 0 !important;
-                    scroll-snap-align: start; /* ปัดแล้วดูดเข้าล็อค */
-                    padding: 10px 20px !important; /* ขนาดปุ่มกำลังดี */
-                    border-radius: 30px !important; /* ขอบมนทรงแคปซูล */
-                    font-weight: 500;
-                    transition: all 0.3s ease;
+                    scroll-snap-align: start !important;
+                    padding: 8px 16px !important; /* ย่อขนาดปุ่มให้เพรียวลง */
+                    font-size: 14px !important; /* ย่อตัวหนังสือลงนิดนึง */
+                    border-radius: 30px !important;
+                    font-weight: 700 !important;
+                    letter-spacing: 0.5px;
+                    color: #ffffff !important;
+                    border: none !important;
+                    /* แสงออร่าวิ่งได้เหมือนเดิม */
+                    background: linear-gradient(270deg, #00c6ff, #0072ff, #7f00ff, #ff007f) !important;
+                    background-size: 300% 300% !important;
+                    animation: glowGradient 4s ease infinite !important;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+                    transition: transform 0.2s ease !important;
                   }
-                  
-                  /* 3. เอฟเฟกต์เวลากดปุ่ม ให้ปุ่มยุบลงนิดนึงดูมีมิติ */
+                
+                  /* 3. เอฟเฟกต์ตอนกดปุ่ม */
                   .nav-btn:active {
-                    transform: scale(0.95);
-                    opacity: 0.8;
+                    transform: scale(0.92) !important;
+                  }
+                
+                  /* 4. อนิเมชันสีวิ่ง */
+                  @keyframes glowGradient {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
                   }
                 }
         </style>
@@ -1019,5 +1035,6 @@
 </body>
 
 </html>
+
 
 
