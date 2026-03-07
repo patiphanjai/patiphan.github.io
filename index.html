@@ -93,6 +93,20 @@
         }
         .hover-glow { transition: all 0.3s ease; cursor: pointer; }
         .hover-glow:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2); border-color: #3b82f6; }
+                    @media (max-width: 768px) {
+              /* ทำให้เมนูเลื่อนซ้าย-ขวาได้ในมือถือ */
+              .nav, .nav-pills, .nav-tabs {
+                display: flex;
+                flex-wrap: nowrap !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 5px;
+              }
+              /* ซ่อนแถบ Scrollbar ให้ดูสะอาดตา */
+              .nav::-webkit-scrollbar, .nav-pills::-webkit-scrollbar {
+                display: none; 
+              }
+            }
     </style>
 </head>
 <body class="text-gray-800 pb-20">
@@ -978,4 +992,5 @@
         }
     </script>
 </body>
+
 </html>
