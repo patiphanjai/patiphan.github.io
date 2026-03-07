@@ -93,21 +93,26 @@
         }
         .hover-glow { transition: all 0.3s ease; cursor: pointer; }
         .hover-glow:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2); border-color: #3b82f6; }
-                    @media (max-width: 768px) {
-              /* ทำให้เมนูเลื่อนซ้าย-ขวาได้ในมือถือ */
-              .nav, .nav-pills, .nav-tabs {
-                display: flex;
-                flex-wrap: nowrap !important;
-                overflow-x: auto;
-                white-space: nowrap;
-                padding-bottom: 5px;
-              }
-              /* ซ่อนแถบ Scrollbar ให้ดูสะอาดตา */
-              .nav::-webkit-scrollbar, .nav-pills::-webkit-scrollbar {
-                display: none; 
-              }
-            }
-    </style>
+                               @media (max-width: 768px) {
+                  /* ปรับกล่องเมนูให้เลื่อนซ้ายขวาได้ */
+                  .glass-card.sticky {
+                    flex-wrap: nowrap !important;
+                    overflow-x: auto !important;
+                    justify-content: flex-start !important;
+                    padding-bottom: 5px;
+                  }
+                  /* ซ่อนแถบ Scrollbar ให้ดูสะอาดตา */
+                  .glass-card.sticky::-webkit-scrollbar {
+                    display: none; 
+                  }
+                  /* ปรับปุ่มไม่ให้กว้างเต็มจอ และไม่ให้บีบตัว */
+                  .nav-btn {
+                    width: auto !important;
+                    white-space: nowrap !important;
+                    flex-shrink: 0 !important;
+                  }
+                }
+        </style>
 </head>
 <body class="text-gray-800 pb-20">
 
@@ -994,3 +999,4 @@
 </body>
 
 </html>
+
