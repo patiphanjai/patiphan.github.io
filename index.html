@@ -93,23 +93,43 @@
         }
         .hover-glow { transition: all 0.3s ease; cursor: pointer; }
         .hover-glow:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2); border-color: #3b82f6; }
-                               @media (max-width: 768px) {
-                  /* ปรับกล่องเมนูให้เลื่อนซ้ายขวาได้ */
+                                               @media (max-width: 768px) {
+                  /* 1. ปรับกล่องเมนูให้ดูทันสมัย มีระยะห่าง และมีเงาบอกใบ้ว่ามีเมนูต่อ */
                   .glass-card.sticky {
+                    display: flex !important;
                     flex-wrap: nowrap !important;
                     overflow-x: auto !important;
                     justify-content: flex-start !important;
-                    padding-bottom: 5px;
+                    gap: 12px; /* เพิ่มช่องว่างระหว่างปุ่มให้ดูพรีเมียม */
+                    padding: 10px 15px !important;
+                    scroll-snap-type: x mandatory; /* ระบบแม่เหล็กเวลาปัดนิ้ว */
+                    -webkit-overflow-scrolling: touch; /* เลื่อนสมูทบนไอโฟน */
+                    position: relative;
+                    /* ใส่เงาด้านขวาบางๆ ให้รู้ว่ามีของซ่อนอยู่ */
+                    box-shadow: inset -20px 0 20px -20px rgba(0,0,0,0.3) !important; 
                   }
-                  /* ซ่อนแถบ Scrollbar ให้ดูสะอาดตา */
+                  
+                  /* ซ่อนแถบ Scrollbar แต่ยังเลื่อนได้ */
                   .glass-card.sticky::-webkit-scrollbar {
                     display: none; 
                   }
-                  /* ปรับปุ่มไม่ให้กว้างเต็มจอ และไม่ให้บีบตัว */
+                
+                  /* 2. ปรับปุ่มให้เป็นทรงแคปซูล ดูนุ่มนวลน่ากด */
                   .nav-btn {
                     width: auto !important;
                     white-space: nowrap !important;
                     flex-shrink: 0 !important;
+                    scroll-snap-align: start; /* ปัดแล้วดูดเข้าล็อค */
+                    padding: 10px 20px !important; /* ขนาดปุ่มกำลังดี */
+                    border-radius: 30px !important; /* ขอบมนทรงแคปซูล */
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                  }
+                  
+                  /* 3. เอฟเฟกต์เวลากดปุ่ม ให้ปุ่มยุบลงนิดนึงดูมีมิติ */
+                  .nav-btn:active {
+                    transform: scale(0.95);
+                    opacity: 0.8;
                   }
                 }
         </style>
@@ -999,4 +1019,5 @@
 </body>
 
 </html>
+
 
